@@ -1,11 +1,16 @@
 # import da persistência
-
 import db
 from mod_funcionario.FuncionarioModel import FuncionarioDB
 from fastapi import APIRouter
 from pydantic import BaseModel
 
-router = APIRouter()
+# import da segurança
+from fastapi import Depends
+import security
+
+# dependências de forma global
+router = APIRouter( dependencies=[Depends(security.verify_token), Depends(security.verify_key)] )
+
 
 class Funcionario(BaseModel):
     codigo: int = None
@@ -17,6 +22,7 @@ class Funcionario(BaseModel):
     senha: str = None
 
 # Criar os endpoints de Funcionario: GET, POST, PUT, DELETE
+
 
 @router.get("/funcionario/", tags=["funcionario"])
 def get_funcionario():
@@ -43,6 +49,7 @@ def get_funcionario(id: int):
         return {"msg": "Erro ao listar", "erro": str(e)}, 404
     finally:
         session.close()
+
 
 @router.post("/funcionario/{id}", tags=["funcionario"])
 def post_funcionario(corpo: Funcionario):

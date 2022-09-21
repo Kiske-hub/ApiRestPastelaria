@@ -1,12 +1,30 @@
 ### Verbo GET – listar
 GET http://localhost:8000/funcionario/ HTTP/1.1
+x-token: abcBolinhasToken
+x-key: abcBolinhasKey2
 
 ### Verbo GET – listar
 GET http://localhost:8000/funcionario/2 HTTP/1.1
+x-token: abcBolinhasToken
+x-key: abcBolinhasKey
+
+### Verbo GET – listar todos
+GET http://localhost:8000/funcionario/ HTTP/1.1
+x-token: abcBolinhasToken
+x-key: abcBolinhasKey
+
+### Verbo GET – listar todos
+curl -X 'GET' \
+'http://localhost:8000/funcionario/' \
+-H 'accept: application/json' \
+-H 'x-token: abcBolinhasToken' \
+-H 'x-key: abcBolinhasKey'
 
 ### Verbo POST – adicionar
 POST http://127.0.0.1:8000/funcionario/4 HTTP/1.1
 content-type: application/json
+x-token: abcBolinhasToken
+x-key: abcBolinhasKey
 
 {
 "nome" : "Abc",
@@ -20,6 +38,8 @@ content-type: application/json
 ### Verbo PUT – atualiza
 PUT http://127.0.0.1:8000/funcionario/2 HTTP/1.1
 content-type: application/json
+x-token: abcBolinhasToken
+x-key: abcBolinhasKey
 
 {
 "nome" : "Uniplac",
@@ -32,3 +52,5 @@ content-type: application/json
 
 ### Verbo DELETE - excluir
 DELETE http://127.0.0.1:8000/funcionario/2 HTTP/1.1
+x-token: abcBolinhasToken
+x-key: abcBolinhasKey
